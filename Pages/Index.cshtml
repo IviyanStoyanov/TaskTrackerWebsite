@@ -13,6 +13,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <html>
+        <!--side bar-->
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>  
@@ -32,7 +33,7 @@
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-light font-monospace">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-light" style="font-size: 30px; width: 100%; height: 100px; text-align: left;">Logout</button>
             </form>
             <a href="#">Tasks</a>
             <a href="#">Contact</a>
@@ -53,7 +54,7 @@
     </body>
     </html>
 
-
+    <!--calendar-->
 
     <body>
 
@@ -79,7 +80,7 @@
             <div id="calendar"></div>
         </div>
 
-        <div id="newEventModal">
+        <div id="newEventModal">   
             <h2>New Event</h2>
 
             <input id="eventTitleInput" placeholder="Event Title" />
