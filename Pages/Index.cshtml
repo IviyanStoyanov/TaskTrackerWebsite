@@ -1,0 +1,124 @@
+﻿@page
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<link rel="stylesheet" href="~/css/task-input.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/buttons.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/side-Bar.css" asp-append-version="true" />
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@using Microsoft.AspNetCore.Identity
+@if (SignInManager.IsSignedIn(User))
+{
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>  
+            .sidenav button {
+                background-color: inherit;
+                border: none;
+                color: lightgray;
+                padding: 0;
+                cursor: pointer;
+                font:larger;
+                text-align: left;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-light font-monospace">Logout</button>
+            </form>
+            <a href="#">Tasks</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+
+    </body>
+    </html>
+
+
+
+    <body>
+
+        <div id="container">
+            <div id="header">
+                <div id="monthDisplay"></div>
+                <div>
+                    <button id="backButton">Back</button>
+                    <button id="nextButton">Next</button>
+                </div>
+            </div>
+
+            <div id="weekdays">
+                <div>Sunday</div>
+                <div>Monday</div>
+                <div>Tuesday</div>
+                <div>Wednesday</div>
+                <div>Thursday</div>
+                <div>Friday</div>
+                <div>Saturday</div>
+            </div>
+
+            <div id="calendar"></div>
+        </div>
+
+        <div id="newEventModal">
+            <h2>New Event</h2>
+
+            <input id="eventTitleInput" placeholder="Event Title" />
+
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+        </div>
+
+        <div id="deleteEventModal">
+            <h2>Event</h2>
+
+            <p id="eventText"></p>
+
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+        </div>
+
+        <div id="modalBackDrop"></div>
+
+        <script src="./js/Task-input.js"></script>
+    </body>
+
+}
+else
+{
+
+    <p>You would need to log in or singn up before using the app</p>
+
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+            <button class="btn btn-primary btn-lg custom-button" style="display:block; text-decoration: none; width:170px;height:45px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                    <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                </svg>
+                Login
+            </button>
+        </a>
+    </li>
+
+    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Create an account</a>
+}
