@@ -84,6 +84,22 @@
             <h2>New Event</h2>
 
             <input id="eventTitleInput" placeholder="Event Title" />
+             <p id="demo">YQ</p>
+   
+            <input type="text" id="myText" value="Mickey">
+            <button type="button" onclick="myFunction()">Try it</button>
+           
+  
+      
+            <script>
+      
+            // Here the value is stored in new variable x 
+               function myFunction() 
+                {
+                var x = document.getElementById("myText").value;
+                document.getElementById("demo").innerHTML = x;
+                }
+            </script>
 
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
@@ -101,6 +117,14 @@
         <div id="modalBackDrop"></div>
 
         <script src="./js/Task-input.js"></script>
+
+        <script>
+            
+            function myFunction() {
+                var priority = document.getElementById("myText").value;
+                document.getElementById("demo").innerHTML = x;
+            }
+    </script>
     </body>
 
 }
